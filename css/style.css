@@ -1,0 +1,45 @@
+header>.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.grid-container {
+    width: 600px;
+    height: 600px;
+    display: flex;
+    flex-wrap: wrap;
+    border: 1px solid black;
+}
+
+/* preparo le classi per le celle */
+
+.box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+.box-10 {
+    width: calc(100% / 10);
+    height: calc(100% / 10);
+}
+
+.box-9 {
+    width: calc(100% / 9);
+    height: calc(100% / 9);
+}
+
+.box-7 {
+    width: calc(100% / 7);
+    height: calc(100% / 7);
+}
