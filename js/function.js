@@ -1,3 +1,47 @@
+// genero le celle
+function cellGenerator(index, number) {
+    // creo l'elemento cella
+    let cell = document.createElement('div')
+    cell.classList.add('box')
+
+    if (number == 100) {
+        cell.classList.add('box-10')
+    } else if (number == 81) {
+        cell.classList.add('box-9')
+    } else {
+        cell.classList.add('box-7')
+    }
+}
+
+// definisco la difficoltà
+function selectDifficulty(difficulty) {
+    if (difficulty.value == "easy") {
+        cellQuantity = 100;
+    } else if (difficulty.value == "medium") {
+        cellQuantity = 81;
+    } else {
+        cellQuantity = 49;
+    }
+
+    return cellQuantity;
+}
+
+// genero la griglia
+function gridGenerator(container, number) {
+    container.innerHTML = ""
+    // creo una variabile per la difficoltà
+    let iteration
+    iteration = selectDifficulty(number)
+
+    for (let i = 1; i <= iteration; i++) {
+        let cellEl = cellGenerator(i, iteration)
+
+        container.append(cellEl)
+    }
+}
+
+
+
 /**
  * 
  * @param {string} msg Messaggio da stampare
