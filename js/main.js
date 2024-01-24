@@ -1,7 +1,13 @@
 // recupero gli elementi HTML
 
-const gridContainer = document.getElementById("grid-container");
-const playButton = document.getElementById("play-button");
-const difficulty = document.getElementById('select-difficulty')
-const result = document.getElementById("result");
+const difficultLvlInput = document.getElementById("difficult");
+const startBtn = document.getElementById("start");
+const gameboard = document.getElementById("gameboard");
+let difficultLvl = 0;
+let isGameOver = false;
+let points = 0;
 
+startBtn.addEventListener("click", function () {
+    difficultLvl = parseInt(difficultLvlInput.value);
+    generateGrid(gameboard, difficultLvl);
+});

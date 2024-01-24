@@ -1,45 +1,73 @@
-header>.container {
+body {
+    background-color: burlywood;
+}
+
+header {
+    height: 70px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 10px 25px;
 }
 
-main {
+#start {
+    width: 80px;
+    border-radius: 5px;
+}
+
+#difficult {
+    width: 180px;
+    border-radius: 5px;
+}
+
+#gamesection {
+    height: calc(100% - 70px - 50px);
+    background-color: #7fffd4;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%;
 }
 
-.grid-container {
-    width: 600px;
-    height: 600px;
+.box-container {
     display: flex;
+    justify-content: center;
+    align-items: center;
     flex-wrap: wrap;
     border: 1px solid black;
+    height: 80%;
+    aspect-ratio: 1;
 }
 
-/* preparo le classi per le celle */
 
+/* creo le classi per le box  */
 .box {
+    border: 1px solid black;
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid black;
-    cursor: pointer;
+    font-weight: bold;
 }
 
 .box-10 {
     width: calc(100% / 10);
-    height: calc(100% / 10);
+    aspect-ratio: 1;
 }
 
 .box-9 {
     width: calc(100% / 9);
-    height: calc(100% / 9);
+    aspect-ratio: 1;
 }
 
 .box-7 {
     width: calc(100% / 7);
-    height: calc(100% / 7);
+    aspect-ratio: 1;
+}
+
+/* classi per il click */
+.box.safe {
+    background-color: greenyellow;
+}
+
+.box.error {
+    background-color: red;
 }

@@ -1,44 +1,74 @@
-// genero le celle
-function cellGenerator(index, number) {
-    // creo l'elemento cella
-    let cell = document.createElement('div')
-    cell.classList.add('box')
-
-    if (number == 100) {
-        cell.classList.add('box-10')
-    } else if (number == 81) {
-        cell.classList.add('box-9')
-    } else {
-        cell.classList.add('box-7')
-    }
-}
-
-// definisco la difficoltà
-function selectDifficulty(difficulty) {
-    if (difficulty.value == "easy") {
-        cellQuantity = 100;
-    } else if (difficulty.value == "medium") {
-        cellQuantity = 81;
-    } else {
-        cellQuantity = 49;
-    }
-
-    return cellQuantity;
-}
-
 // genero la griglia
-function gridGenerator(container, number) {
-    container.innerHTML = ""
-    // creo una variabile per la difficoltà
-    let iteration
-    iteration = selectDifficulty(number)
-
-    for (let i = 1; i <= iteration; i++) {
-        let cellEl = cellGenerator(i, iteration)
-
-        container.append(cellEl)
+function generateGrid(container, level) {
+    container.innerHTML = "";
+    const bombArray = bombArrayGen(level);
+    console.table(bombArray);
+    let boxEl = "";
+    for (i = 1; i <= level * level; i++) {
+        boxEl = generateBox(i, level, bombArray);
+        container.append(boxEl);
     }
 }
+
+function generateBox(i, level, bomblist) {
+    let box = document.createElement("div");
+    box.innerText = i;
+    box.setAttribute("data-i", i);
+    box.classList.add("box");
+    box.classList.add(`box-${level}`);
+
+    // gestisco l'evento al click
+    box.addEventListener("click", function () {
+
+        if (!isGameOver) {
+            if (bomblist.includes(parseInt(this.getAttribute("data-i")))) {
+                let boxCollection = document.getElementsByClassName("box");
+                for (index = 1; index < boxCollection.length; index++) {
+                    if (bomblist.includes(parseInt(boxCollection[index].innerText))) {
+                        boxCollection[index].classList.add("error");
+                    }
+                }
+                alert("Hai perso, riprova!! Punteggio: " + points);
+                isGameOver = true;
+            } else {
+
+                // condizione di vittoria
+                this.classList.add("safe");
+                points += 1;
+                if (points >= level * level - 16) {
+                    alert("Hai vinto, hai fatto un punteggio di " + points);
+                    isGameOver = true;
+                    let boxCollection = document.getElementsByClassName("box");
+                    for (index = 1; index < boxCollection.length; index++) {
+                        if (bomblist.includes(parseInt(boxCollection[index].innerText))) {
+                            boxCollection[index].classList.add("error");
+                        }
+                    }
+                }
+            }
+        }
+    });
+    return box;
+}
+
+// genero le bombe
+function bombArrayGen(level) {
+    const bombArray = [];
+    let min = 1;
+    let max = level * level;
+    let offset = max - min;
+    if (offset >= 16) {
+        while (bombArray.length < 16) {
+            let bomb = Math.floor(Math.random() * (max - min + 1) + min);
+            if (!bombArray.includes(bomb)) {
+                bombArray.push(bomb);
+            }
+        }
+    }
+
+    return bombArray;
+}
+
 
 
 

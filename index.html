@@ -38,31 +38,25 @@
 
         <!-- selezione difficoltà -->
         <div class="d-flex">
-            <select class="form-select me-3" id="select-difficulty">
-                <option value="easy">Easy</option>
-                <option value="medium" selected>Medium</option>
-                <option value="hard">Hard</option>
+            <select id="difficult">
+                <option value="10">Easy</option>
+                <option value="9">Medium</option>
+                <option value="7">Hard</option>
             </select>
 
             <!-- play button -->
-            <button type="button" class="btn btn-primary" id="play-button">Play</button>
+            <button type="button" id="start">Play</button>
 
         </div>
     </header>
 
     <!-- MAIN -->
-    <main class="container">
+    <main class="container d-flex ">
         <div class="container">
             <!-- griglia -->
-            <div class="grid-container" id="grid-container">
+            <div class="box-container" id="gameboard">
 
             </div>
-        </div>
-
-        <!-- punteggio -->
-        <div class="score-container">
-            <span>Score: </span>
-            <span id="score">0</span>
         </div>
 
     </main>
